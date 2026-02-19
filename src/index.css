@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 9%;
+
+    --radius: 0.375rem;
+
+    --font-heading: 'Newsreader', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    
+    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.04);
+    --shadow-card: 0 1px 2px 0 hsl(0 0% 0% / 0.03);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+}
+
+@layer components {
+  .prose-newsletter {
+    @apply text-foreground;
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose-newsletter h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-medium mb-6 md:mb-8;
+    font-family: var(--font-heading);
+    line-height: 1.2;
+  }
+
+  .prose-newsletter h2 {
+    @apply text-2xl md:text-3xl font-medium mt-12 mb-4;
+    font-family: var(--font-heading);
+  }
+
+  .prose-newsletter h3 {
+    @apply text-xl md:text-2xl font-medium mt-10 mb-3;
+    font-family: var(--font-heading);
+  }
+
+  .prose-newsletter p {
+    @apply mb-6 text-foreground/90;
+  }
+
+  .prose-newsletter ul, .prose-newsletter ol {
+    @apply mb-6 pl-6 space-y-2;
+  }
+
+  .prose-newsletter ul {
+    @apply list-disc;
+  }
+
+  .prose-newsletter ol {
+    @apply list-decimal;
+  }
+
+  .prose-newsletter li {
+    @apply text-foreground/90;
+  }
+
+  .prose-newsletter blockquote {
+    @apply border-l-2 border-foreground/20 pl-6 italic my-8 text-foreground/70;
+  }
+
+  .prose-newsletter a {
+    @apply text-foreground underline underline-offset-2 decoration-foreground/30 hover:decoration-foreground transition-colors;
+  }
+
+  .prose-newsletter strong {
+    @apply font-semibold;
+  }
+
+  .prose-newsletter img {
+    @apply my-8 w-full;
+  }
+
+  .prose-newsletter code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose-newsletter pre {
+    @apply bg-muted p-4 rounded overflow-x-auto my-6;
+  }
+
+  .prose-newsletter pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose-newsletter hr {
+    @apply my-12 border-border;
+  }
+}
+
+/* TipTap Editor Styles */
+.tiptap {
+  @apply outline-none min-h-[400px];
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  @apply text-muted-foreground pointer-events-none float-left h-0;
+  content: attr(data-placeholder);
+}
+
+.tiptap:focus {
+  outline: none;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
